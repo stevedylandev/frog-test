@@ -5,7 +5,7 @@ import { handle } from 'frog/vercel'
 import { PinataFDK } from "pinata-fdk"
 
 const fdk = new PinataFDK({
-  pinata_jwt: `${process.env.PINATA_JWT}`,
+  pinata_jwt: process.env.PINATA_JWT as string,
   pinata_gateway: ''
   })
 
@@ -18,7 +18,7 @@ const app = new Frog({
 // Uncomment to use Edge Runtime
 // export const runtime = 'edge'
 
-app.use('/', fdk.analyticsMiddleware({ frameId: "frog test" }))
+app.use('/', fdk.analyticsMiddleware({ frameId: "frog-test" }))
 
 app.frame('/', (c) => {
   const { buttonValue, inputText, status } = c
